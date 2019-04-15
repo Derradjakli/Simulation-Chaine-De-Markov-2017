@@ -1,0 +1,42 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from CdM import CdM
+import utils
+
+class MouseInMaze(CdM):
+    """classe définissant une souris caractérisée par
+    """
+    
+    def __init__(self,p):
+        super().__init__()
+        
+    def get_states(self):
+        return range(1,7)
+
+    """pour chaque état de départ possible, on a un dictionnaire différetn; on doit donc traiter tous les cas"""
+    def get_transition_distribution(self,state):
+        d=dict()
+        if state==1:
+            d.update({1:0.5})
+            d.update({2:0.5})
+        if state==2:
+            d.update({1:0.5})
+            d.update({4:0.5})
+        if state==3:
+            d.update({1:0.25})
+            d.update({5:0.25})
+            d.update({6:0.25})
+            d.update({2:0.25})
+        if state==4:
+            d.update({3:1})
+        if state==5:
+            d.update({5:1})
+        if state==6:
+            d.update({6:1})
+        return d
+    
+    def get_initial_distribution(self):
+        d=dict()
+        d[2]=1
+        return d
+    
